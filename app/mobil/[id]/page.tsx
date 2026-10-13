@@ -2,17 +2,14 @@ import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import GaleriFoto from "./GaleriFoto";
 import FormSewa from "./FormSewa";
+import { Suspense } from "react";
 
 // 1. KONEKSI KE BRANKAS DATA (SUPABASE)
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export function generateStaticParams() {
-  return [{ id: 'dummy' }];
-}
-
-export default async function DetailMobil({ params }: { params: Promise<{ id: string }> }) {
+async function DetailMobilData({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   const { data: mobil, error } = await supabase
@@ -137,5 +134,12 @@ export default async function DetailMobil({ params }: { params: Promise<{ id: st
         </div>
       </main>
     </>
+  );
+}
+export default function DetailMobil({ params }: { params: Promise<{ id: string }> }) {
+  return (
+    <Suspense fallback={<div className="p-20 text-center text-xl">Memuat data mobil...</div>}>
+      <DetailMobilData params={params} />
+    </Suspense>
   );
 }
