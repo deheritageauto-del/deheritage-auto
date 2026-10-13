@@ -131,7 +131,7 @@ export default function Home() {
         {!isLoading && (
           <HeroSlideshow 
             judul={webSettings?.judul_utama || "Timeless Elegance For Your Special Moments"}
-            subJudul={webSettings?.sub_judul || "Koleksi eksklusif kendaraan klasik premium untuk momen berharga Anda."}
+            subJudul={webSettings?.sub_judul || "Koleksi eksklusif kendaraan klasik untuk momen berharga Anda."}
             fotoLatar={webSettings?.foto_latar || []}
           />
         )}
@@ -195,35 +195,69 @@ export default function Home() {
           ) : (
             <>
               {mobilTampil.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
                   {mobilTampil.map((mobil) => (
-                    <Link href={`/mobil/${mobil.id}`} key={mobil.id} className="block bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col group border border-gray-150">
-                      <div className="relative h-64 bg-dh-charcoal overflow-hidden">
-                        <img src={mobil.images?.[0] || "https://images.unsplash.com/photo-1511216113906-8f56bb469a51?q=80&w=1000"} alt={mobil.model} className="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-95 group-hover:opacity-100" />
-                        <div className="absolute top-4 left-4 bg-dh-charcoal text-dh-ivory border border-dh-gold text-[10px] tracking-widest px-3.5 py-1.5 uppercase font-semibold">{mobil.tahun}</div>
-                        <div className="absolute top-4 right-4 bg-dh-gold text-dh-charcoal text-[9px] tracking-wider font-extrabold px-3 py-1.5 uppercase rounded-sm shadow">Sewa / Rental</div>
-                        
-                        {/* Label Lokasi */}
-                        {mobil.lokasi && (
-                          <div className="absolute bottom-4 right-4 bg-dh-charcoal/80 backdrop-blur-sm text-dh-ivory border border-gray-500/30 text-[9px] tracking-widest px-3 py-1.5 uppercase font-semibold flex items-center gap-1.5 rounded-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-dh-gold">
-                              <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                            </svg>
-                            {mobil.lokasi}
-                          </div>
-                        )}
-                      </div>
-                      
-                      <div className="p-8 flex-grow flex flex-col border border-t-0 border-gray-100">
-                        <div className="text-[10px] text-dh-gold tracking-widest font-extrabold mb-1 uppercase">{mobil.merek}</div>
-                        <h4 className="text-xl font-serif font-bold text-dh-charcoal mb-2 tracking-wide group-hover:text-dh-gold transition-colors">{mobil.model}</h4>
-                        <div className="w-10 h-[1.5px] bg-dh-gold/45 my-3"></div>
-                        <div className="mt-auto pt-5 border-t border-gray-100 flex justify-between items-center">
-                          <span className="text-dh-charcoal font-serif font-extrabold text-[14px]">{mobil.harga}</span>
-                          <span className="text-[11px] font-bold tracking-widest uppercase text-dh-gold border-b-2 border-dh-gold/20 pb-1">Detail & Booking</span>
-                        </div>
-                      </div>
-                    </Link>
+                    <Link href={`/mobil/${mobil.id}`} key={mobil.id} className="block bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+  
+  {/* Bagian Foto Mobil */}
+  <div className="relative h-48 md:h-64 bg-dh-charcoal overflow-hidden">
+    <img 
+      src={mobil.images?.[0] || "https://images.unsplash.com/photo-1511216113906-8f56bb469a51?q=80"} 
+      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      alt={mobil.model}
+    />
+    
+    {/* Label Lokasi (Dipertahankan dari kode Anda) */}
+    {mobil.lokasi && (
+      <div className="absolute bottom-4 right-4 bg-dh-charcoal/80 backdrop-blur-sm text-dh-ivory border border-dh-gold text-[9px] md:text-[10px] tracking-wider px-2 py-1 flex items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
+          <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.04..."/>
+        </svg>
+        {mobil.lokasi}
+      </div>
+    )}
+  </div>
+
+  {/* Bagian Teks (Deskripsi, Merek, Model, Harga) */}
+  <div className="p-4 md:p-8 flex-grow flex flex-col border border-t-0 border-gray-100"> 
+    
+    <div>
+      {/* Merek Mobil */}
+      <span className="text-[10px] text-dh-gold tracking-widest font-extrabold mb-1 uppercase block line-clamp-1">
+        {mobil.merek}
+      </span>
+      
+      {/* Model Mobil */}
+      <h4 className="text-lg md:text-xl font-serif font-bold text-dh-charcoal mb-2 tracking-wide group-hover:text-dh-gold transition-colors line-clamp-2">
+        {mobil.model}
+      </h4>
+    </div>
+
+    {/* Garis Pemisah Emas (Dipertahankan dari kode Anda) */}
+    <div className="w-10 h-[1.5px] bg-dh-gold/45 my-2 md:my-3"></div>
+
+    {/* Bagian Harga dan Tombol Detail */}
+    {/* flex-col untuk HP (menumpuk), flex-row untuk layar besar (berdampingan) */}
+    <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-3 mt-auto pt-2">
+      
+      {/* Harga */}
+      <div>
+        <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">
+          Mulai dari
+        </div>
+        <div className="text-sm md:text-base font-bold text-dh-charcoal">
+          {mobil.harga} <span className="text-[10px] font-normal text-gray-500">/ 8 Jam</span>
+        </div>
+      </div>
+
+      {/* Tombol Detail & Booking */}
+      <span className="text-dh-gold text-[10px] font-bold uppercase tracking-widest border-b border-dh-gold pb-1 group-hover:text-dh-charcoal group-hover:border-dh-charcoal transition-colors self-start xl:self-auto mt-1 xl:mt-0 whitespace-nowrap">
+        Detail & Booking
+      </span>
+      
+    </div>
+  </div>
+</Link>
                   ))}
                 </div>
               ) : (

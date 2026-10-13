@@ -36,7 +36,7 @@ export default function HeroSlideshow({ judul, subJudul, fotoLatar }: { judul: s
 
       <div className="relative z-10 max-w-4xl px-2">
         <span className="text-dh-gold text-xs tracking-[0.5em] uppercase font-bold mb-4 block">
-          PREMIUM VINTAGE COLLECTION
+          VINTAGE COLLECTION
         </span>
         <h2 className="text-dh-ivory text-4xl md:text-7xl font-serif font-bold tracking-tight leading-tight mb-6 drop-shadow-lg">
           {judul}
