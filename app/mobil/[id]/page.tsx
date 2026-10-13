@@ -9,7 +9,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export function generateStaticParams() {
-  return [];
+  return [{ id: 'dummy' }];
 }
 
 export default async function DetailMobil({ params }: { params: Promise<{ id: string }> }) {
