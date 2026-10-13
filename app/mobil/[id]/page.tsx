@@ -8,6 +8,10 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+export function generateStaticParams() {
+  return [];
+}
+
 export default async function DetailMobil({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
