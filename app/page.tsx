@@ -207,20 +207,18 @@ export default function Home() {
       alt={mobil.model}
     />
     
-    {/* Label Lokasi (Dipertahankan dari kode Anda) */}
-    {mobil.lokasi && (
-      <div className="absolute bottom-4 right-4 bg-dh-charcoal/80 backdrop-blur-sm text-dh-ivory border border-dh-gold text-[9px] md:text-[10px] tracking-wider px-2 py-1 flex items-center gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
-          <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.04..."/>
-        </svg>
-        {mobil.lokasi}
-      </div>
-    )}
+    {/* Label Lokasi (Sudah benar-benar center) */}
+{mobil.lokasi && (
+  <div className="absolute bottom-4 right-4 bg-dh-charcoal/80 backdrop-blur-sm text-dh-ivory border border-dh-gold flex items-center justify-center min-w-[80px] h-[28px] px-2">
+    <span className="text-[9px] md:text-[10px] tracking-[0.15em] pl-[0.15em] font-medium mt-[1px]">
+      {mobil.lokasi}
+    </span>
   </div>
+      )}
+    </div> {/* <--- INI YANG HILANG DI KODE ANDA. TAMBAHKAN INI */}
 
-  {/* Bagian Teks (Deskripsi, Merek, Model, Harga) */}
-  <div className="p-4 md:p-8 flex-grow flex flex-col border border-t-0 border-gray-100"> 
-    
+    {/* Bagian Teks (Deskripsi, Merek, Model, Harga) */}
+    <div className="p-4 md:p-8 flex-grow flex flex-col border border-t-0 border-gray-100">
     <div>
       {/* Merek Mobil */}
       <span className="text-[10px] text-dh-gold tracking-widest font-extrabold mb-1 uppercase block line-clamp-1">
@@ -246,7 +244,7 @@ export default function Home() {
           Mulai dari
         </div>
         <div className="text-sm md:text-base font-bold text-dh-charcoal">
-          {mobil.harga} <span className="text-[10px] font-normal text-gray-500">/ 8 Jam</span>
+          {mobil.harga} <span className="text-[10px] font-normal text-gray-500"></span>
         </div>
       </div>
 

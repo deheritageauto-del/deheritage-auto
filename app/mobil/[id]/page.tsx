@@ -4,7 +4,6 @@ import GaleriFoto from "./GaleriFoto";
 import FormSewa from "./FormSewa";
 import { Suspense } from "react";
 
-
 // 1. KONEKSI KE BRANKAS DATA (SUPABASE)
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
@@ -129,7 +128,7 @@ async function DetailMobilData({ params }: { params: Promise<{ id: string }> }) 
 
           {/* KANAN: FORMULIR PEMESANAN VIA EMAIL */}
           <div className="lg:col-span-5">
-            <FormSewa harga={mobil.harga} namaMobil={`${mobil.merek} ${mobil.model}`} />
+            <FormSewa harga={mobil.harga} namaMobil={mobil.model} layanan={mobil.layanan} />
           </div>
 
         </div>

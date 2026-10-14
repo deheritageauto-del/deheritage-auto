@@ -1,8 +1,8 @@
 "use client";
 
-export default function FormSewa({ harga, namaMobil }: { harga: string, namaMobil: string }) {
+export default function FormSewa({ harga, namaMobil, layanan }: { harga: string, namaMobil: string, layanan?: string[] }) {
   // GANTI ALAMAT EMAIL DI BAWAH INI DENGAN EMAIL ASLI ADMIN DEHERITAGE AUTO!
-  const emailAdmin = "deheritageauto@gmail.com"; 
+  const emailAdmin = "@gmail.com"; 
 
   return (
     <div className="sticky top-28 bg-white border border-gray-200 p-8 md:p-10 shadow-xl rounded-sm">
@@ -10,6 +10,26 @@ export default function FormSewa({ harga, namaMobil }: { harga: string, namaMobi
         <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-2">Tarif Sewa</div>
         <div className="text-3xl font-serif font-black text-dh-charcoal">{harga}</div>
       </div>
+
+      {/* === KODE TAG LAYANAN (MULAI) === */}
+      {layanan && Array.isArray(layanan) && layanan.length > 0 && (
+        <div className="mb-8">
+          <div className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-3">
+            Tersedia Untuk:
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {layanan.map((tag: string, index: number) => (
+              <span 
+                key={index} 
+                className="px-4 py-1.5 text-[10px] md:text-xs font-semibold text-[#c39b57] border border-[#c39b57] rounded-full bg-[#c39b57]/5 tracking-wide uppercase"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      {/* === KODE TAG LAYANAN (SELESAI) === */}
 
       <h3 className="text-xl font-serif font-bold text-dh-charcoal mb-2 tracking-wider">Formulir Pengajuan Sewa</h3>
       <p className="text-xs text-gray-500 mb-8 font-light leading-relaxed">
@@ -50,12 +70,13 @@ export default function FormSewa({ harga, namaMobil }: { harga: string, namaMobi
             <input type="date" name="Tanggal Sewa" required className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-dh-gold bg-transparent text-sm transition-colors text-gray-600" />
           </div>
           <div>
-            <label className="text-[10px] text-dh-charcoal uppercase tracking-widest font-bold mb-2 block">Durasi (Hari)</label>
+            <label className="text-[10px] text-dh-charcoal uppercase tracking-widest font-bold mb-2 block">Durasi (Jam)</label>
             <select name="Durasi Sewa" className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-dh-gold bg-transparent text-sm transition-colors text-gray-600">
-              <option value="1 Hari">1 Hari</option>
-              <option value="2 Hari">2 Hari</option>
-              <option value="3 Hari">3 Hari</option>
-              <option value="Lebih dari 3 Hari">Lebih dari 3 Hari</option>
+              <option value="6 jam">6 Jam</option>
+              <option value="12 Jam">12 Jam</option>
+              <option value="18 Jam">18 jam</option>
+              <option value="24 Jam">24 jam</option>
+              <option value="Lebih dari 24 Jam">Lebih dari 24 Jam</option>
             </select>
           </div>
         </div>
